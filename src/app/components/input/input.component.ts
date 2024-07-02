@@ -37,7 +37,7 @@ export class InputComponent {
     // Utilizando signal para receber o valor da propriedade placeholder.
     placeholderUpperCase = input('', {
         alias: 'placeholderUpperCase',
-        transform: (value: string | null) => (value || '').toUpperCase()
+        transform: (value: string | null) => (value ?? '').toUpperCase()
     });
     onInput = (event: Event) => {
         console.log('input event', event);

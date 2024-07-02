@@ -5,6 +5,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {AboutComponent} from "./components/about/about.component";
 import {AdminComponent} from "./components/admin/admin.component";
 import {isAdminUserGuard} from './guard/user-flag.guard';
+import {FormComponent} from "./components/forms/reusable-form/form.component";
 
 export const appConfig: ApplicationConfig = {
   providers: [
