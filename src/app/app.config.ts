@@ -1,11 +1,12 @@
 import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
-import {provideRouter} from '@angular/router';
+import {PreloadAllModules, provideRouter, withDebugTracing, withPreloading} from '@angular/router';
 import {APP_ROUTES, APP_ROUTES_TOKEN} from "./app.routes";
-import {HomeComponent} from "./components/home/home.component";
-import {AboutComponent} from "./components/about/about.component";
-import {AdminComponent} from "./components/admin/admin.component";
+import {FormContainerComponent} from "./components/forms/multi-step-form/form-container/form-container.component";
+import {HomeComponent} from "./components/how-to-use-routes/home/home.component";
+import {AboutComponent} from "./components/how-to-use-routes/about/about.component";
+import {AdminComponent} from "./components/how-to-use-routes/admin/admin.component";
 import {isAdminUserGuard} from './guard/user-flag.guard';
-import {FormComponent} from "./components/forms/reusable-form/form.component";
+import {ReusableFormComponent} from "./components/forms/reusable-form/reusable-form.component";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,9 @@ export const appConfig: ApplicationConfig = {
       {path: APP_ROUTES.HOME(), component: AdminComponent, canMatch: [isAdminUserGuard()]},
       {path: APP_ROUTES.HOME(), component: HomeComponent},
       {path: APP_ROUTES.ABOUT(), component: AboutComponent},
-    ]),
+      {path: APP_ROUTES.REUSABLE_FORM(), component: ReusableFormComponent},
+      {path: APP_ROUTES.MULTI_STEP_FORM(),
+        loadChildren: () => import('./components/forms/multi-step-form/form-container/form-container.routes').then(m => m.FORM_CONTAINER_ROUTES)},
+    ], withPreloading(PreloadAllModules), withDebugTracing()),
   ]
 };

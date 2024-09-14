@@ -15,12 +15,12 @@ import {ControlContainer, FormControl, FormGroup, ReactiveFormsModule} from "@an
       <fieldset [formGroupName]="controlKey">
           <legend>{{label}}</legend>
           <div class="form-field">
-              <label for="zipCode">Zip Code</label>
-              <input type="text" id="zipCode" formControlName="zipCode">
+              <label class="form-label" for="zipCode">Zip Code</label>
+              <input class="form-control" type="text" id="zipCode" formControlName="zipCode">
           </div>
           <div class="form-field">
-              <label for="address">Street</label>
-              <input type="text" id="address" formControlName="street">
+              <label class="form-label" for="address">Street</label>
+              <input class="form-control" type="text" id="address" formControlName="street">
           </div>
       </fieldset>
 
@@ -28,6 +28,8 @@ import {ControlContainer, FormControl, FormGroup, ReactiveFormsModule} from "@an
 })
 export class AddressGroupComponent implements OnInit, OnDestroy {
 
+  // Faz a injeção do parent ignorando o AddressGroupComponent.
+  // A configuração skipSelf no factory do viewProviders é a responsável por isso;
   parentContainer = inject(ControlContainer);
 
   @Input({required: true}) controlKey!: string;
@@ -43,10 +45,12 @@ export class AddressGroupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // registra o formGroup no parent.
     this.parentFormGroup.addControl(this.controlKey, this._innerFormGroup);
   }
 
   ngOnDestroy() {
+    // remove o formGroup do parent.
     this.parentFormGroup.removeControl(this.controlKey);
   }
 }

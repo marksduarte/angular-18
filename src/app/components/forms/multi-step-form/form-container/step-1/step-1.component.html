@@ -1,0 +1,25 @@
+<div [formGroup]="formStep1">
+    <div class="row mb-2">
+        <div class="col">
+            <label class="form-label">Nome</label>
+            <input class="form-control" formControlName="firstName"/>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label class="form-label">Último nome</label>
+            <input class="form-control" formControlName="lastName"/>
+        </div>
+
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label class="form-label">Data de Nascimento</label>
+            <input class="form-control" type="date" formControlName="birthDate"/>
+        </div>
+
+    </div>
+    <div class="d-flex flex-row-reverse">
+        <button class="btn btn-success" routerLink="../step-2" [disabled]="formStep1.invalid">Próximo</button>
+    </div>
+</div>

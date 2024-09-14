@@ -1,0 +1,32 @@
+<div [formGroup]="formStep2">
+    <div class="row mb-2">
+        <div class="col">
+            <label class="form-label">Endereço</label>
+            <input class="form-control" formControlName="address" />
+        </div>
+
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label class="form-label">Cidade</label>
+            <input class="form-control" formControlName="city" />
+        </div>
+
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label class="form-label">Estado</label>
+            <select class="form-select" formControlName="state">
+                @for (uf of unidadesFederativas; track uf.sigla) {
+                    <option [value]="uf.sigla">{{ uf.nome }}</option>
+                }
+            </select>
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-light" routerLink="../step-1">Voltar</button>
+        <button class="btn btn-success mx-1" (click)="submit()" [disabled]="formStep2.invalid">Enviar</button>
+    </div>
+</div>
