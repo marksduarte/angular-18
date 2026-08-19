@@ -7,6 +7,7 @@ export const APP_ROUTES = {
     ABOUT: (relativePath = '') => relativePath + 'about',
     MULTI_STEP_FORM: (relativePath = '') => relativePath + 'multi-step',
     REUSABLE_FORM: (relativePath = '') => relativePath + 'reusable',
+    HTTP_CLIENT_TEST: (relativePath = '') => relativePath + 'http-client-test',
 }
 
 type AppRoutesKeys = keyof typeof APP_ROUTES;
